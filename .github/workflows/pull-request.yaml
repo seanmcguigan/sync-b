@@ -1,0 +1,26 @@
+name: "Pull request"
+
+run-name: Pull request @${{ github.actor }}
+
+on:
+  workflow_dispatch:
+  pull_request:
+    types: [opened, reopened, synchronize, edited]
+    branches:
+      - 'main'
+
+permissions:
+  actions: write
+  contents: read
+
+jobs:
+  build:
+    name: Run tests
+    runs-on: ubuntu-22.04
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: tests
+        run: |
+          echo "your tests here" && sleep 10
